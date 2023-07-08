@@ -13,6 +13,6 @@ Details about the `13` benchmarks used in our evaluation are given in individual
 
 For example, there are two effect operators in `minset\prog.ml`: `Setinsert` and `Setmem`. The client code `min_insert` with be type checked against the HAT with the same name (`let[@assert] min_insert ...`).
 
-## Built-in Operator Typing
+## Types of Built-in Operators
 
 The built-in types for the pure operators and effect operators are included in file `predefined/builtin_pure_typing.ml` and `predefined/builtin_eff_typing.ml`.

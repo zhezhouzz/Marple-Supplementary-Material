@@ -1,6 +1,5 @@
 type effect = Setinsert of (int -> unit) | Setmem of (int -> bool)
 
-(* A set equips with a min and max *)
 
 let lazy_insert (thunk : unit -> unit) (elem : int) : unit -> unit =
   if perform (Setmem elem) then fun (x : unit) ->

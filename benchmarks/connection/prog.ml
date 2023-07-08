@@ -38,9 +38,3 @@ let[@assert] write ?l:(db = (true : [%v: nat]))
             : [%v: unit]);
         Ret (true : [%v0: unit])) : unit);
   }
-
-(* let[@assert] reconnect ?l:(a = (true : [%v: unit])) = *)
-(*   { pre = starA anyA; post = (Ret (true : [%v0: unit]) : unit) } *)
-
-(* let[@assert] disconnect ?l:(a = (true : [%v: unit])) = *)
-(*   { pre = starA anyA; post = (Ret (true : [%v0: unit]) : unit) } *)

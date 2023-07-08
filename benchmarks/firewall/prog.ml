@@ -7,25 +7,6 @@ type effect =
 (* atab id -> auth *)
 (* dtab id -> channel data; where id should greater than 0 *)
 
-(* let send (ctab : nat) (atab : nat) (dtab : nat) (cid : int) (id : int) : *)
-(*     int -> unit = *)
-(*   let (cid_ : int) = perform (Lookup (ctab, 0)) in *)
-(*   if cid == cid_ then *)
-(*     if cid == id then *)
-(*       let (dummy3 : int) = perform (Lookup (dtab, cid)) in *)
-(*       fun (data : int) -> *)
-(*         let (dummy0 : unit) = perform (Update (dtab, id, data)) in *)
-(*         dummy0 *)
-(*     else if perform (Mem (atab, id)) then *)
-(*       if perform (Lookup (atab, id)) > 0 then *)
-(*         let (dummy4 : int) = perform (Lookup (dtab, cid)) in *)
-(*         fun (data : int) -> *)
-(*           let (dummy1 : unit) = perform (Update (dtab, id, data)) in *)
-(*           dummy1 *)
-(*       else fun (data : int) -> () *)
-(*     else fun (data : int) -> () *)
-(*   else fun (data : int) -> () *)
-
 let send (ctab : nat) (atab : nat) (dtab : nat) (cid : int) (id : int) :
     int -> unit =
   if cid == id then

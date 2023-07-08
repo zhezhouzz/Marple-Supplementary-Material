@@ -33,12 +33,3 @@ let[@assert] open_page ?l:(db = (true : [%v: nat])) =
             : [%v: unit]);
         Ret (true : [%v0: unit])) : unit);
   }
-
-(* let[@assert] closepage ?l:(a = (true : [%v: unit])) = *)
-(*   { *)
-(*     pre = *)
-(*       (starA anyA; *)
-(*        Openpage (true : [%v0: unit]); *)
-(*        starA (compA (Openpage (true : [%v0: unit])))); *)
-(*     post = (Ret (true : [%v0: unit]) : unit); *)
-(*   } *)
