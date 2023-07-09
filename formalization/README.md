@@ -53,24 +53,8 @@ Our formalization takes inspiration and ideas from the following work, though do
 
 ## Differences Between Paper and Artifact
 
-- Our formalization only has two base types: nat and bool.
-- To simplify the syntax, our formalization don't treat the operators (e.g. `+`) as values. Alternately, we can define the operators as values using lambda functions. For example, the value `+` can be defined as
-
-```
-fun (x: nat) (y: nat) =
-    let (res: nat) = x + y in
-    res
-```
-
-- Our formalization only has four operators: `+`, `==`, `<`, `nat_gen`. Other operators shown in the paper can be implemented in terms of these. E.g., the minus operator can be defined as:
-
-```
-let minus (x: nat) (y: nat) =
-    let (diff: nat) = nat_gen () in
-    if x + diff == y then diff else err
-```
-
-In addition, to simplify the syntax, all operators take two input arguments; e.g., the random nat generator takes two arbitrary numbers as input.
+- Basic types: our formalization only has two base types: nat and bool.
+- Operatros: To simplify the syntax, all operators in our formalization only takes one argument; the pure opeartors, for example, arithemetic operator (e.g., `op_eq_zero` and `op_plus_one`) are treated as effectful opertaors, whose return value is independent from the context trace, and will not intereface the result values of other operators.
 - In the formalization, to simplify the syntax, pattern-matching can only pattern-match against Boolean variables. Pattern matching over natural numbers
 
 ```
@@ -82,18 +66,14 @@ match n with
 is implemented as follows:
 
 ```
-if n == 0 then e1
-else let m = n - 1 in e2
+let cond = op_eq_zero n in
+match cond with
+| true -> e1
+| else ->
+  let m = op_minus_one n in
+  e2
 ```
 
 - We assume all input programs are alpha-converted, such that all variables have unique names.
-- We use the [locally nameless representation](https://chargueraud.org/research/2009/ln/main.pdf) in all terms, values, refinement, and type context, thus the definitions look slightly different from the definitions shown in the paper.
-- We encode the propositions in the refinement type as Coq propositions. In order to capture the free variables and the bound variables (see locally nameless representation), all propositions will be constructed with
-  + a set of atoms (variables) `d`, which are the free variables in the proposition.
-  + a natural number `n`, which indicates the upper bound of the bound variables.
-- Following the encoding above, for example, the base Hoare Automata Type `[v:b | φ]` will be encoded as `[v:b | n | d | φ]`.
-- The substitution of refinement types is formalized into states (a mapping from variables to values), helping to eliminate termination checks of the fixpoint function in Coq when we define the logical relation. Precisely
-  + the definition of the type denotation has the form `{ n; bst; st }⟦ τ ⟧` instead of `⟦ τ ⟧`, where `(n, bst)` is the state of the bound variables, `st` is the state of the free variables.
-  + the definition of the type denotation under the type context has the form `{ st }⟦ τ ⟧{ Γ }` instead of `⟦ τ ⟧{ Γ }`, where `st` is the state of the free variables. Here we omit the bound state `(n, bst)` thus all types in the type context are locally closed (see locally nameless representation).
-- In the formalization, our coverage typing rules additionally require that all the branches of a pattern-matching expression are type-safe in the basic type system (they may not be consistent with the Hoare Automata Type we want to check). We didn't mention it in the original paper, however, we will fix it in the second round submission.
-- For sake of convenience of the proof, we split a single typing rule into different cases (then we can prove these cases separately during the induction proof). For example, the rule `TLetE` in Figure 13 (in the appendix) is split into `UT_Lete_base` and `UT_Lete_arr` in our proof.
+- We use the [locally nameless representation](https://chargueraud.org/research/2009/ln/main.pdf) in all terms, values, types, and type context, thus the definitions look slightly different from the definitions shown in the paper.
+- We encode the propositions in the refinement type as Coq propositions. In order to capture the free variables and the bound variables (see locally nameless representation), TODO: quanifiers. Following the encoding above, for exmaple, the base refinement type `[v:b | φ]` will be encoded as `[: b| φ]`, where `φ` contains a local bound variable with index `0`.
