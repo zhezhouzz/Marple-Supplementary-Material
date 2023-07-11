@@ -41,7 +41,11 @@ opam pin coq-hammer-tactics 1.3.2+8.16
 ```
 
 To build and check the Coq formalization, simply run `make` in the
-`formalization` directory.
+`formalization` directory. The command `Print Assumptions soundness` at the end
+of file `Typing.v` should print out `Axioms: builtin_typing_relation : ...`. It
+means our proofs do not rely on any axioms except for the definition
+`builtin_typing_relation` (i.e. `Δ` in the paper), which we deliberately leave
+undefined, as the type system is parameterized over this relation.
 
 Our formalization takes inspiration and ideas from the following work, though does not directly depend on them:
 - [Software Foundations](https://softwarefoundations.cis.upenn.edu/): a lot of our formalization is inspired by the style used in Software Foundations.
