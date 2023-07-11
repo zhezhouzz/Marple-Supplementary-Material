@@ -13,7 +13,7 @@ The files are structured as follows:
   - `BasicTyping.v`: Definitions and notations for the basic typing.
   - `BasicTypingProp.v`: Lemmas for the basic typing rules.
   - `Qualifier.v`: Definitions and notations for qualifiers.
-  - `ListCtx.v`: Definitions and notations for reasoning about polymorphic contexts.
+  - `ListCtx.v`: Definitions and notations for reasoning about type context.
   - `RefinementType.v`: Definitions and notations of Hoare Automata Types.
   - `Denotation.v`: Definitions and notations of the automaton and type denotation.
   - `Instantiation.v`: Lemmas for the substitution under type context.
@@ -65,7 +65,6 @@ Our formalization takes inspiration and ideas from the following work, though do
 | Type context denotation      | Figure 10                                                                   | `ctxRst` in file `Denotation.v` (line `117`)                                                                              |                                 |
 | Fundamental Theorem          | Theorem 4.10                                                                | `fundamental` in file `Typing.v` (line `1775`)                                                                               |                                 |
 | Soundness theorem            | Theorem 4.11                                                                | `soundness` in file `Typing.v` (line `2523`)                                                                                 |                                 |
-> Readers can find the supplemental materials in `doc/poirot-SM.pdf`.
 
 ## Differences Between Paper and Artifact
 
