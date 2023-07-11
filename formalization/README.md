@@ -54,7 +54,7 @@ Our formalization takes inspiration and ideas from the following work, though do
 | Term Syntax                  | Figure 2                                                                    | mutually recursively defined as values (`value`) and expressions (`tm`) in file `CoreLang.v` (line `45`)                      |                                 |
 | Trace Syntax                 | Figure 3                                                                    | `trace` in file `Trace.v` (line `17`)                                                                                     | `[ev{ op ~ v1 := v2 }]`         |
 | Type Syntax                  | Figure 4                                                                    | basic types (`ty`) in file `CoreLang` (line `20`), Refinement Types (`pty`) and Hoare Automata Types (`hty`) in file `RefinementType.v` (line `40` and `68`) | `{: b `&#124;` ϕ }`, `-: t ⤑[: s `&#124;` A ▶ B ]`, and `[: s `&#124;` A ▶ B ]`                               |
-| Operational semantics        | Figure 3 (and Figure 12 in supplementary materials shows full set of rules) | `step` in file `OperationalSemantics.v` (line `14`)                                                                       | `α '⊧' e '↪{' α' '}' e'`        |
+| Operational semantics        | Figure 3 (and Figure 12 in supplementary materials shows full set of rules) | `step` in file `OperationalSemantics.v` (line `14`)                                                                       | `α ⊧ e ↪{ α } e`        |
 | Basic typing rules           | Figure 13 (supplementary materials)                                         | mutually recursive definition of `tm_has_type` and `value_has_type` in file `BasicTyping.v` (line `36`)                     | `Γ ⊢t e ⋮t T` and `Γ ⊢t v ⋮v T` |
 | Type Erasure                 | Figure 7                                                                    | `hty_erase` (line `88`) and `ctx_erase` (line `300`) in file `RefinementTypes.v`                                          | `⌊ τ ⌋` and `⌊ Γ ⌋*`            |
 | Well-formedness typing rules | Figure 15 (supplementary materials)                                                                  | `wf_hty` in file `Typing.v` (line `47`)                                                               | `Γ ⊢WF τ`                       |
@@ -105,5 +105,6 @@ match cond with
   well-formedness condition), the definition of automata in our formalization
   does not include this event, and we can recover the definition in the paper by
   taking a pair of an automata and a refinement type as the return event.
+- The built-in operator typing relation `Γ ⊢ (θ, t) ∈ Δ` in the paper is paramaterized as any relation that is well-formed (Definition 4.9).
 - The post automata in a Hoare Automata Type is in union normal form, consistent
   with how they are treated in the typing rules.
